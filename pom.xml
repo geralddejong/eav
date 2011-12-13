@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright [2009] [Gerald de Jong]
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.npcf</groupId>
+    <artifactId>npcf-eav</artifactId>
+    <packaging>pom</packaging>
+    <name>Entity Attribute Value System</name>
+    <version>0.1</version>
+    <inceptionYear>2008</inceptionYear>
+    <developers>
+        <developer>
+            <name>Gerald de Jong</name>
+            <email>geralddejong@gmail.com</email>
+            <roles>
+                <role>designer developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <organization>
+        <name>Beautiful Code BV</name>
+        <url>http://www.beautifulcode.eu</url>
+    </organization>
+    <modules>
+        <module>eav-store</module>
+        <module>eav-123</module>
+        <module>eav-crud</module>
+    </modules>
+</project>

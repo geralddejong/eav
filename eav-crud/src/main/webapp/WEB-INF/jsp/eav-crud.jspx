@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:form="http://www.springframework.org/tags/form"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+          xmlns:portlet="http://java.sun.com/portlet"
+          xmlns:liferay-theme="http://liferay.com/tld/theme"
+          version="2.0">
+
+    <liferay-theme:defineObjects/>
+
+    <div>
+
+        <portlet:actionURL var="formURL">
+            <portlet:param name="action" value="fetch"/>
+        </portlet:actionURL>
+
+        <form:form action="${formURL}" commandName="command">
+            <table style="padding:10px;">
+                <tr>
+                    <td align="right">
+                        <fmt:message key="promptBSN"/>
+                    </td>
+                    <td>
+                        <form:input path="bsn" cssStyle="width: 250px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <fmt:message key="promptSubmit" var="value"/>
+                        <input type="submit" value="${value}"/>
+                    </td>
+                </tr>
+            </table>
+        </form:form>
+    </div>
+
+</jsp:root>

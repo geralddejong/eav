@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright [2009] [Gerald de Jong]
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<schema name="Service">
+    <description>
+        Dienst: string formaat "organisatie.naam.onderdeel" (entity)
+        Het is de bedoeling in de id's al wat structuur aan te brengen.
+    </description>
+
+    <attributes>
+
+        <attribute name="purpose" dataType="TEXT" required="true">
+            <prompt>
+                Doel: tekst, omschrijving wat deze dienst precies doet. (entity en attribute)
+                Het is de bedoeling deze tekst te gebruiken on in het portaal te tonen als omschrijving
+            </prompt>
+            <fieldType><string maximumLength="1000"/></fieldType>
+        </attribute>
+
+        <attribute name="faq" dataType="STRING" multiple="true">
+            <prompt>
+                faq: link naar faq portlet of naar de website (meerdere)
+            </prompt>
+            <field><url/></field>
+        </attribute>
+
+        <attribute name="link" required="true">
+            <prompt>
+                link: string, formaat "proto://hostname/path?param1&amp;param2....." (mandatory, 1x)
+                Met deze link wordt gekoppeld. alleen de [param1] etc worden alsdan vervangen.
+                het is niet de bedoeling de link te tonen in een portlet. een portlet die dient als koppeling toont bv
+                [a href="portlet?dienst=erasmus.tolven.cf&amp;token=12345"]CF dossier erasmus[/a] of vergelijkbaar.
+                Dit token is een gegenereerd token en dient ter beveiliging tegen hacking. Wel controleren, met een vervaltijd van 30 minuten (als dat gaat).
+
+                http://www.kiesbeter.nl/algemeen/Zoeken/default.aspx?zoekterm=bloed
+            </prompt>
+            <attribute name="url" dataType="STRING" required="true">
+                <field><url/></field>
+            </attribute>
+            <attribute name="method" dataType="STRING" required="true">
+                <prompt>
+                    method: hoe de link te gebruiken: Iframe, _top, _content, _new, wsrp
+                </prompt>
+                <field>
+                    <choice>
+                        <option>IFRAME</option>
+                        <option>TOP</option>
+                        <option>CONTENT</option>
+                        <option>NEW</option>
+                        <option>WSRP</option>
+                    </choice>
+                </field>
+            </attribute>
+            <attribute name="parameter" multiple="true">
+                <attribute name="field" dataType="STRING" required="true">
+                    <prompt>
+                        param1: definitie parameter 1 van de koppelingsurl; mogelijkheden:
+                        constante
+                        variable value (bij abonnement opgegeven)
+                        fixed value (verwijzing naar aanwezig attribuut, bv. gebdat, geslacht, leeftijd)
+                    </prompt>
+                    <field>
+                        <choice>
+                            <option>CONSTANT</option>
+                            <option>SUBSCRIPTION_VARIABLE</option>
+                            <option>FIXED_VALUE_ATTRIBUTE</option>
+                        </choice>
+                    </field>
+                </attribute>
+                <attribute name="format" dataType="STRING" required="true">
+                    <prompt>
+                        param1.regex: de regular expression die op de value uitgevoerd moet worden, bv. herformat van gebdat,
+                        berekening leeftijd uit gebdat, enz; niet veel moeite doen perfect te zijn !!
+                    </prompt>
+                    <field><string maximumLength="230"/></field>
+                </attribute>
+            </attribute>
+        </attribute>
+
+        <attribute name="contact" required="false">
+            <prompt>
+                organisatie.adres, contactpersoon, telefoonnummer, etc. etc.
+            </prompt>
+            <attribute name="address" dataType="STRING" required="true">
+                <field><string maximumLength="64"/></field>
+            </attribute>
+            <attribute name="person" dataType="STRING" required="true">
+                <field><string maximumLength="64"/></field>
+            </attribute>
+            <attribute name="telephone" dataType="STRING" required="true">
+                <field><string maximumLength="64"/></field>
+            </attribute>
+        </attribute>
+
+    </attributes>
+</schema>

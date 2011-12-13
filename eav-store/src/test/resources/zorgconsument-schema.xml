@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright [2009] [Gerald de Jong]
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<schema>
+
+    <templates>
+
+        <attribute name="naamgegevens">
+            <attribute name="voornamen" dataType="STRING">
+                <prompt>Voornaam</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="voorvoegsel" dataType="STRING">
+                <prompt>Voorvoegsel</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="familienaam" dataType="STRING">
+                <prompt>Familienaam</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="geslacht" dataType="STRING">
+                <prompt>Geslacht</prompt>
+                <field>
+                    <choice>
+                        <option>MAN</option>
+                        <option>VROUW</option>
+                    </choice>
+                </field>
+            </attribute>
+        </attribute>
+
+        <attribute name="adresgegevens">
+            <attribute name="straatnaam" dataType="STRING">
+                <prompt>Straatnaam</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="huisnummer" dataType="STRING">
+                <prompt>Huisnummer</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="toevoeging" dataType="STRING" required="false">
+                <prompt>Huisnummer toevoeging</prompt>
+                <field><string maximumLength="6"/></field>
+            </attribute>
+            <attribute name="postcode" dataType="STRING">
+                <prompt>Postcode</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="woonplaats" dataType="STRING">
+                <prompt>Woonplaats</prompt>
+                <field><string/></field>
+            </attribute>
+        </attribute>
+
+        <attribute name="basisdienstgegevens">
+            <attribute name="url" dataType="STRING">
+                <prompt>Dienstadres (URL)</prompt>
+                <field><url/></field>
+            </attribute>
+            <attribute name="registratiedatum" dataType="DATETIME">
+                <prompt>Registratiedatum</prompt>
+                <field><string/></field>
+            </attribute>
+        </attribute>
+
+    </templates>
+
+    <attributes>
+        <attribute name="liferayid" dataType="STRING">
+            <prompt>Liferay Identiteit</prompt>
+            <field><string maximumLength="15"/></field>
+        </attribute>
+        <attribute name="zoeknaam" dataType="STRING">
+            <prompt>Zoeknaam?</prompt>
+            <field><string maximumLength="15"/></field>
+        </attribute>
+
+        <attribute name="persoon" templateName="naamgegevens">
+            <prompt>Eigen Identitiet</prompt>
+        </attribute>
+
+        <attribute name="echtgenoot" templateName="naamgegevens">
+            <prompt>Echtgenoot Identitiet</prompt>
+        </attribute>
+
+        <attribute name="bereikbaarheid">
+            <prompt>Bereikbaarheid</prompt>
+            <attribute name="telefoon">
+                <prompt>Bereikbaarheid per telefoon</prompt>
+                <attribute name="thuis" dataType="STRING">
+                    <prompt>Telefoonnummer Thuis</prompt>
+                    <!--Telefoonnummers bestaan uit 10 cijfers en beginnen niet met 08 of 09-->
+                    <!--Optie om buitenlandse nummers aan te kunnen ?-->
+                    <field><string/></field>
+                </attribute>
+                <attribute name="werk" dataType="STRING" required="false" multiple="true">
+                    <prompt>Telefoonnummer Werk</prompt>
+                    <field><string/></field>
+                </attribute>
+                <attribute name="mobiel" dataType="STRING" multiple="true">
+                    <prompt>GSM Nummer</prompt>
+                    <field><string/></field>
+                </attribute>
+                <attribute name="fax" dataType="STRING" required="false">
+                    <prompt>Faxnummer</prompt>
+                    <field><string/></field>
+                </attribute>
+                <!--add. telnr (max 5x)-->
+            </attribute>
+            <attribute name="email">
+                <prompt>Bereikbaarheid per email</prompt>
+                <attribute name="zorg" dataType="STRING" required="false">
+                    <prompt>Zorg emailadres</prompt>
+                    <field><string/></field>
+                </attribute>
+                <attribute name="ander" dataType="STRING" required="false" multiple="true">
+                    <prompt>Ander emailadres</prompt>
+                    <field><string/></field>
+                </attribute>
+            </attribute>
+        </attribute>
+
+        <attribute name="adres">
+            <prompt>Adressen</prompt>
+            <attribute name="woon" templateName="adresgegevens">
+                <prompt>Woonadres</prompt>
+            </attribute>
+            <attribute name="werk" templateName="adresgegevens" multiple="true">
+                <prompt>Werkadres</prompt>
+            </attribute>
+            <attribute name="post" templateName="adresgegevens">
+                <prompt>Postadres</prompt>
+            </attribute>
+        </attribute>
+
+        <attribute name="verzekering">
+            <prompt>Verzekeringsgegevens</prompt>
+            <attribute name="sofinummer" dataType="STRING">
+                <prompt>Sofinummer</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="bsn" dataType="STRING">
+                <prompt>Burger servicenummer</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="verzekeraar" dataType="STRING">
+                <prompt>Naam Verzekeringsmaatschappij</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="polisnummer" dataType="STRING">
+                <prompt>Polisnummer</prompt>
+                <field><string/></field>
+            </attribute>
+            <attribute name="verzekeringsvorm" dataType="STRING">
+                <prompt>Verzekeringsvorm</prompt>
+                <field><string/></field>
+            </attribute>
+        </attribute>
+
+        <attribute name="portemonee">
+            <attribute name="diensten">
+                <prompt>Diensten</prompt>
+
+                <attribute name="diensta">
+                    <attribute name="basis" templateName="basisdienstgegevens">
+                    </attribute>
+                    <!--here the specific values for the service-->
+                </attribute>
+
+            </attribute>
+        </attribute>
+
+    </attributes>
+</schema>
